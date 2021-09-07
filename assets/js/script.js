@@ -1314,6 +1314,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var rege
 
 /***/ }),
 
+/***/ "./src/assets/js/modules/images.js":
+/*!*****************************************!*\
+  !*** ./src/assets/js/modules/images.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scroll */ \"./src/assets/js/modules/scroll.js\");\n\n\nvar images = function images() {\n  var workSection = document.querySelector(\".works\");\n  var popupImg = document.createElement(\"div\");\n  var bigImg = document.createElement(\"img\");\n  var overlay = document.querySelector(\".overlay\");\n  workSection.addEventListener(\"click\", function (e) {\n    var target = e.target;\n\n    if (target && target.classList.contains(\"works__img\")) {\n      e.preventDefault();\n      overlay.append(popupImg);\n      popupImg.append(bigImg);\n      overlay.classList.remove(\"hide\");\n      overlay.classList.add(\"fadeIn\", \"flex-center\");\n      var path = target.parentNode.getAttribute(\"href\");\n      bigImg.setAttribute(\"src\", path);\n      document.body.style.overflow = \"hidden\";\n      document.body.style.paddingRight = \"\".concat(Object(_scroll__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(), \"px\");\n    }\n  });\n  overlay.addEventListener(\"click\", function (e) {\n    if (e.target == overlay) {\n      overlay.classList.add(\"hide\");\n      overlay.classList.remove(\"fadeIn\", \"flex-center\");\n      popupImg.remove();\n      bigImg.removeAttribute(\"src\");\n      document.body.style.overflow = \"\";\n      document.body.style.paddingRight = \"0px\";\n    }\n  });\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (images);\n\n//# sourceURL=webpack:///./src/assets/js/modules/images.js?");
+
+/***/ }),
+
 /***/ "./src/assets/js/modules/modals.js":
 /*!*****************************************!*\
   !*** ./src/assets/js/modules/modals.js ***!
@@ -1350,6 +1362,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core
 
 /***/ }),
 
+/***/ "./src/assets/js/modules/timer.js":
+/*!****************************************!*\
+  !*** ./src/assets/js/modules/timer.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nvar timer = function timer(endTime) {\n  var getRemainingTime = function getRemainingTime(endTime) {\n    var t = Date.parse(endTime) - Date.parse(new Date());\n    var seconds = Math.floor(t / 1000 % 60);\n    var minutes = Math.floor(t / 1000 / 60 % 60);\n    var hours = Math.floor(t / 1000 / 3600 % 24);\n    var days = Math.floor(t / 1000 / 3600 / 24);\n    return {\n      \"total\": t,\n      \"days\": days,\n      \"hours\": hours - 3,\n      \"minutes\": minutes,\n      \"seconds\": seconds\n    };\n  };\n\n  var addZero = function addZero(num) {\n    if (num <= 9) {\n      return \"0\".concat(num);\n    } else {\n      return num;\n    }\n  };\n\n  var setClock = function setClock(selector, endTime) {\n    var timer = document.querySelector(selector);\n    var days = timer.querySelector(\"#days\");\n    var hours = timer.querySelector(\"#hours\");\n    var minutes = timer.querySelector(\"#minutes\");\n    var seconds = timer.querySelector(\"#seconds\");\n    var timeInterval = setInterval(upDate, 1000);\n    upDate();\n\n    function upDate() {\n      var t = getRemainingTime(endTime);\n      days.textContent = addZero(t.days);\n      hours.textContent = addZero(t.hours);\n      minutes.textContent = addZero(t.minutes);\n      seconds.textContent = addZero(t.seconds);\n\n      if (t.total <= 0) {\n        clearInterval(timeInterval);\n        days.textContent = \"00\";\n        hours.textContent = \"00\";\n        minutes.textContent = \"00\";\n        seconds.textContent = \"00\";\n      }\n    }\n  };\n\n  setClock(\".sale__timer-list\", endTime);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (timer);\n\n//# sourceURL=webpack:///./src/assets/js/modules/timer.js?");
+
+/***/ }),
+
 /***/ "./src/assets/js/script.js":
 /*!*********************************!*\
   !*** ./src/assets/js/script.js ***!
@@ -1358,7 +1382,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_changeModals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/changeModals */ \"./src/assets/js/modules/changeModals.js\");\n/* harmony import */ var _modules_checkInputPhone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/checkInputPhone */ \"./src/assets/js/modules/checkInputPhone.js\");\n/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/form */ \"./src/assets/js/modules/form.js\");\n/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modals */ \"./src/assets/js/modules/modals.js\");\n/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/tabs */ \"./src/assets/js/modules/tabs.js\");\n\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  \"use strict\";\n\n  var modalState = {};\n  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n  Object(_modules_form__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(modalState);\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(\".glazing__tabs-list\", \".glazing__tabs-item\", \".glazing__card\", \"glazing__active\");\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(\".popup-calc__balcon\", \".popup-calc__img\", \".popup-calc__img-big > img\", \"popup-calc__active\");\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_4__[\"default\"])(\".decoration__tabs-list\", \".decoration__tabs-item\", \".decoration__item\", \"decoration__active\");\n  Object(_modules_changeModals__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(modalState);\n  Object(_modules_checkInputPhone__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n});\n\n//# sourceURL=webpack:///./src/assets/js/script.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_changeModals__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/changeModals */ \"./src/assets/js/modules/changeModals.js\");\n/* harmony import */ var _modules_checkInputPhone__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/checkInputPhone */ \"./src/assets/js/modules/checkInputPhone.js\");\n/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/form */ \"./src/assets/js/modules/form.js\");\n/* harmony import */ var _modules_images__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/images */ \"./src/assets/js/modules/images.js\");\n/* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/modals */ \"./src/assets/js/modules/modals.js\");\n/* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/tabs */ \"./src/assets/js/modules/tabs.js\");\n/* harmony import */ var _modules_timer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/timer */ \"./src/assets/js/modules/timer.js\");\n\n\n\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n  \"use strict\";\n\n  var modalState = {};\n  var deadline = \"2021-10-01\";\n  Object(_modules_modals__WEBPACK_IMPORTED_MODULE_4__[\"default\"])();\n  Object(_modules_form__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(modalState);\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(\".glazing__tabs-list\", \".glazing__tabs-item\", \".glazing__card\", \"glazing__active\");\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(\".popup-calc__balcon\", \".popup-calc__img\", \".popup-calc__img-big > img\", \"popup-calc__active\");\n  Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_5__[\"default\"])(\".decoration__tabs-list\", \".decoration__tabs-item\", \".decoration__item\", \"decoration__active\");\n  Object(_modules_changeModals__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(modalState);\n  Object(_modules_checkInputPhone__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\n  Object(_modules_images__WEBPACK_IMPORTED_MODULE_3__[\"default\"])();\n  Object(_modules_timer__WEBPACK_IMPORTED_MODULE_6__[\"default\"])(deadline);\n});\n\n//# sourceURL=webpack:///./src/assets/js/script.js?");
 
 /***/ })
 
